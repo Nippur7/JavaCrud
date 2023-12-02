@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/12/2023 21:03:05 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="tpjavafinalhiber.Partido" table="partido" catalog="tpfinaljava" optimistic-lock="version">
+        <id name="idpartido" type="int">
+            <column name="idpartido" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="equipoByIdequipo1" class="tpjavafinalhiber.Equipo" fetch="select">
+            <column name="idequipo1" />
+        </many-to-one>
+        <many-to-one name="equipoByIdequipo2" class="tpjavafinalhiber.Equipo" fetch="select">
+            <column name="idequipo2" />
+        </many-to-one>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" />
+        </property>
+        <property name="golesEq1" type="java.lang.Integer">
+            <column name="golesEq1" />
+        </property>
+        <property name="golesEq2" type="java.lang.Integer">
+            <column name="golesEq2" />
+        </property>
+    </class>
+</hibernate-mapping>

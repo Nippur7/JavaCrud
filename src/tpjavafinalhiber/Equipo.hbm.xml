@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/12/2023 21:03:05 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="tpjavafinalhiber.Equipo" table="equipo" catalog="tpfinaljava" optimistic-lock="version">
+        <id name="idequipo" type="java.lang.Integer">
+            <column name="idequipo" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" />
+        </property>
+        <property name="titulares" type="java.lang.Integer">
+            <column name="titulares" />
+        </property>
+        <property name="suplentes" type="java.lang.Integer">
+            <column name="suplentes" />
+        </property>
+        <property name="directorTecnico" type="string">
+            <column name="directorTecnico" length="45" />
+        </property>
+        <property name="puntos" type="java.lang.Integer">
+            <column name="puntos" />
+        </property>
+        <property name="partidosJugados" type="java.lang.Integer">
+            <column name="partidosJugados" />
+        </property>
+        <set name="partidosForIdequipo1" table="partido" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idequipo1" />
+            </key>
+            <one-to-many class="tpjavafinalhiber.Partido" />
+        </set>
+        <set name="partidosForIdequipo2" table="partido" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idequipo2" />
+            </key>
+            <one-to-many class="tpjavafinalhiber.Partido" />
+        </set>
+    </class>
+</hibernate-mapping>
