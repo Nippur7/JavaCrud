@@ -6,7 +6,7 @@
     <class name="tpjavafinalhiber.Partido" table="partido" catalog="tpfinaljava" optimistic-lock="version">
         <id name="idpartido" type="int">
             <column name="idpartido" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="equipoByIdequipo1" class="tpjavafinalhiber.Equipo" fetch="select">
             <column name="idequipo1" />

@@ -21,11 +21,11 @@ public class Partido  implements java.io.Serializable {
     }
 
 	
-    public Partido(int idpartido) {
-        this.idpartido = idpartido;
-    }
-    public Partido(int idpartido, Equipo equipoByIdequipo1, Equipo equipoByIdequipo2, Date fecha, Integer golesEq1, Integer golesEq2) {
-       this.idpartido = idpartido;
+    //public Partido(int idpartido) {
+    //    this.idpartido = idpartido;
+    //}
+    public Partido(Equipo equipoByIdequipo1, Equipo equipoByIdequipo2, Date fecha, Integer golesEq1, Integer golesEq2) {
+       //this.idpartido = idpartido;
        this.equipoByIdequipo1 = equipoByIdequipo1;
        this.equipoByIdequipo2 = equipoByIdequipo2;
        this.fecha = fecha;
