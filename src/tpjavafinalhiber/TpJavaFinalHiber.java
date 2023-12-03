@@ -111,8 +111,12 @@ public class TpJavaFinalHiber
                                                     System.out.println("Borrado exitoso");
                                                             
                                                 }
-                                                else
+                                                else 
                                                 {
+                                                    if(res == -2 )
+                                                    {
+                                                        System.out.println("Equipo tiene partidos jugados, para eliminar no debe tener partidos asociados...!!");
+                                                    }
                                                     System.out.println("Error Borrado no completado");
                                                 }
                                             }

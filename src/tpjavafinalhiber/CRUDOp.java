@@ -134,16 +134,9 @@ public class CRUDOp {
                 return (1);
             }
             catch(HibernateException ex)
-                    {
-                       return (-1);
-                       //System.err.println("Error al eliminar...");
-                       //break;
-                       //throw ex;
-                       
-                       //session.setRollbackOnly();
-                    }
-            
-            
+            {
+                return (-2);                
+            }
             }
 	}
         
@@ -255,75 +248,24 @@ public class CRUDOp {
 	
 	public void verPartido(int id) 
         {
-		Equipo eq = buscarEquipo(id);                
-		System.out.println("Recuperando el Registro: "+id);
-		if (eq == null)
-                {
-                    System.out.println("Registro no encontrado...!!!");
-                }
-                else
-                {                    
-                    System.out.println("El NOMBRE de equipo es:\n"+eq.getNombre());                                                    
-                    System.out.println("La CANTIDAD DE TITULARES es:\n"+eq.getTitulares());                                                    
-                    System.out.println("La CANTIDAD DE SUPLENTES es:\n"+eq.getSuplentes());                                                    
-                    System.out.println("El Nombre del DT es:\n"+eq.getDirectorTecnico());                                                    
-                };                    
+		      
 	}
 	
 	public void actualizarPartido(int id ) 
         {
-                Scanner scan = new Scanner(System.in);
-		Scanner scanText = new Scanner(System.in);
-                scanText.useDelimiter("\\n");
-                Equipo aux1 = buscarEquipo(id);               
-                if(aux1 == null)
-                {
-                    System.out.println("No encuentro ese id...?? ");
-                }
-                else
-                {
-                    System.out.println("El NOMBRE de equipo es:\n"+aux1.getNombre());                                                    
-                    System.out.println("La CANTIDAD DE TITULARES es:\n"+aux1.getTitulares());                                                    
-                    System.out.println("La CANTIDAD DE SUPLENTES es:\n"+aux1.getSuplentes());                                                    
-                    System.out.println("El Nombre del DT es:\n"+aux1.getDirectorTecnico());                                                    
-                    System.out.println("------------------------------");                                
-                    System.out.println("Actualizando registro: "+id);                                
-                    System.out.println("Ingrese NOMBRE de equipo\n");                    
-                    aux1.setNombre(scanText.next());
-                    System.out.println("Ingrese CANTIDAD DE TITULARES\n");                    
-                    aux1.setTitulares(scan.nextInt());
-                    System.out.println("Ingrese CANTIDAD DE SUPLENTES\n");
-                    aux1.setSuplentes(scan.nextInt());
-                    System.out.println("Ingrese Nombre del DT\n");
-                    aux1.setDirectorTecnico(scanText.next());                                    
-                    startOp();
-                    session.update(aux1);
-                    System.out.println("Equipo Actualizado");
-                    stopOp();
-                }
+
 	}
 	
 	public void borrarPartido(int id) 
         {
-            Equipo aux1 = buscarEquipo(id);               
-            if(aux1 == null)
-            {
-                System.out.println("No encuentro ese id...?? ");
-            }
-            else
-            {
-            System.out.println("Borrando el registro: "+id);
-            startOp();
-            session.delete(aux1);
-            stopOp();
-            }
+
 	}
         
-        private Equipo buscarPartido(int id)
+        private Partido buscarPartido(int id)
         {              
             startOp();
-            Equipo eq = (Equipo) session.get(Equipo.class,id);            
+            Partido par = (Partido)session.get(Partido.class,id);                        
             stopOp(); 
-            return(eq);             
+            return(par);
         }        
 }
