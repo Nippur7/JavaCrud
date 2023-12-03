@@ -105,7 +105,16 @@ public class TpJavaFinalHiber
 						System.out.println("Eliminar un Equipo\n");
                                                 System.out.println("Ingrese el id del Equipo a borrar");
                                                 idequipo = scan.nextInt();                                                
-                                                crud.borrarEquipo(idequipo);                                                                                                
+                                                int res = crud.borrarEquipo(idequipo);
+                                                if (res >0) 
+                                                {
+                                                    System.out.println("Borrado exitoso");
+                                                            
+                                                }
+                                                else
+                                                {
+                                                    System.out.println("Borrado no completado");
+                                                }
                                             }
                                             catch(InputMismatchException e)
                                             {

@@ -5,8 +5,10 @@
  */
 package tpjavafinalhiber;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Date;
 import java.util.Scanner;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -112,19 +114,36 @@ public class CRUDOp {
                 }
 	}
 	
-	public void borrarEquipo(int id) 
+	public int borrarEquipo(int id) 
         {
             Equipo aux1 = buscarEquipo(id);               
             if(aux1 == null)
             {
                 System.out.println("No encuentro ese id...?? ");
+                return (-1);
             }
             else
             {
             System.out.println("Borrando el registro: "+id);
-            startOp();
-            session.delete(aux1);
-            stopOp();
+            try
+            {
+                startOp();
+                session.delete(aux1);
+                session.flush();
+                stopOp();
+                return (1);
+            }
+            catch(HibernateException ex)
+                    {
+                       return (-1);
+                       //System.err.println("Error al eliminar...");
+                       //break;
+                       //throw ex;
+                       
+                       //session.setRollbackOnly();
+                    }
+            
+            
             }
 	}
         
@@ -213,9 +232,7 @@ public class CRUDOp {
                                 else
                                 {
                                     eq2.setPartidosJugados(eq2.getPartidosJugados()+1);
-                                }                            
-                            
-                        
+                                }                        
                             startOp();
                             int resPar = (int)session.save(par);
                             stopOp();
