@@ -113,7 +113,7 @@ public class TpJavaFinalHiber
                                                 }
                                                 else
                                                 {
-                                                    System.out.println("Borrado no completado");
+                                                    System.out.println("Error Borrado no completado");
                                                 }
                                             }
                                             catch(InputMismatchException e)
