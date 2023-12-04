@@ -33,7 +33,7 @@ public class TpJavaFinalHiber
 	static String director;
 	int puntos;
 	int partidos;
-	int idpartido;
+	static int idpartido;
 	static Date fecha;
 	static int idequipo1;
 	static int idequipo2;
@@ -52,7 +52,7 @@ public class TpJavaFinalHiber
 			while(opcion == 1) 
                         {
 				System.out.println("Menú CRUD --Equipos--");
-				System.out.println("1) Agregar Equipo\n2) Recuperar datos del Equipo\n3) Actualizar un Equipo\n4) Eliminar un Equipo\n5) Agregar un Partido");
+				System.out.println("1) Agregar Equipo\n2) Recuperar datos del Equipo\n3) Actualizar un Equipo\n4) Eliminar un Equipo\n5) Agregar un Partido\n6) Ver datos de Partido");
 				System.out.println("Teclee una opción:");
 				scanText.useDelimiter("\\n");			
 				int selector = scan.nextInt();			
@@ -141,7 +141,13 @@ public class TpJavaFinalHiber
 						System.out.println("Ingrese CANTIDAD DE Goles Visitante\n");
 						golesEq2 = scan.nextInt();
 						crud.agregarPartido(idequipo1, idequipo2, fecha, golesEq1, golesEq2);
-						break;                                            
+						break;
+                                        case 6:
+                                                System.out.println("Buscar un Partido\n");
+						System.out.println("Ingrese ID del Partido\n");
+                                                idpartido = scan.nextInt();
+                                                crud.verPartido(idpartido);
+                                                break;
 					default:
 						System.out.println("Por favor teclee alguna opción válida\n");
 			

@@ -8,6 +8,7 @@ package tpjavafinalhiber;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Date;
 import java.util.Scanner;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -248,7 +249,40 @@ public class CRUDOp {
 	
 	public void verPartido(int id) 
         {
-		      
+            Partido pa = buscarPartido(id);                
+            System.out.println("Recuperando el Partido: "+id);
+            if (pa == null)
+            {
+                System.out.println("Partido no encontrado...!!!");
+            }
+            else
+            {                    
+                System.out.println("El ID del Partido es:\n"+pa.getIdpartido()); 
+                startOp();
+                Equipo eq1 = pa.getEquipoByIdequipo1();
+                Equipo eq2 = pa.getEquipoByIdequipo2();
+                stopOp();
+                System.out.println("El Equipo Local es:\n"+eq1.getNombre());
+                System.out.println("El Equipo Visitante es:\n"+eq2.getNombre());
+                if(pa.getGolesEq1()>pa.getGolesEq2())
+                {
+                    System.out.println("El Equipo Ganador es:\n"+eq1.getNombre());
+                }
+                else
+                {
+                    if(pa.getGolesEq1()<pa.getGolesEq2())
+                    {
+                        System.out.println("El Equipo Ganador es:\n"+eq2.getNombre());
+                    }
+                    else
+                    {
+                        System.out.println("Hubo un empate con : "+pa.getGolesEq1()+" Goles cada uno.");
+                    }
+                }
+                System.out.println("");
+                //System.out.println("La CANTIDAD DE SUPLENTES es:\n"+eq.getSuplentes());                                                    
+                //System.out.println("El Nombre del DT es:\n"+eq.getDirectorTecnico());                                                    
+            }      
 	}
 	
 	public void actualizarPartido(int id ) 
@@ -264,7 +298,11 @@ public class CRUDOp {
         private Partido buscarPartido(int id)
         {              
             startOp();
-            Partido par = (Partido)session.get(Partido.class,id);                        
+            Partido par = (Partido)session.get(Partido.class,id);
+            //par.getEquipoByIdequipo1();
+            //par.getEquipoByIdequipo2();
+                Hibernate.initialize(par.getEquipoByIdequipo1());
+                Hibernate.initialize(par.getEquipoByIdequipo2());
             stopOp(); 
             return(par);
         }        
